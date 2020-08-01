@@ -1,5 +1,5 @@
 import maya.cmds as cmds
-def a():
+def fk_chain():
     JointChain=cmds.ls(selection=True)
     JointRel=cmds.listRelatives(JointChain,ad=True)
     JointRel.reverse()
@@ -31,4 +31,4 @@ def a():
         
         
         
-a()
+fk_chain()
