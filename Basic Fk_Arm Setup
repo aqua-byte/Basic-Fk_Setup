@@ -1,3 +1,15 @@
+###############################################################################################################
+#################################### FK  CHAIN ################################################################
+###############################################################################################################
+
+
+#Author:Himanshi Ahuja
+#Email:himansheeahuja@gmail.com
+
+#Select the joint and run the script. (It will make fk controllers with parenting and offset groups on all it's hierarchy joints and on the selected joint too)
+
+
+
 import maya.cmds as cmds
 def fk_chain():
     JointChain=cmds.ls(selection=True)
