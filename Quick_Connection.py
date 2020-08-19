@@ -1,10 +1,10 @@
 ###############################################################################################################
 ##################################### QUICK_CONNECTION ########################################################
 ###############################################################################################################
+
+
 #Author:Himanshi Ahuja
 #Email:himansheeahuja@gmail.com
-
-
 
 import maya.cmds as cmds
 import maya.mel as mel
@@ -117,7 +117,7 @@ def createDriven():
     try:
         for i in Selc:
             cmds.textScrollList('asd',e=True,a=i)
-            DrivenVar.append(Selc)
+            DrivenVar.append(i)
             print (i+' Driven')
             
             
@@ -126,27 +126,30 @@ def createDriven():
     
         
 def create_rotate_connection():
-    
+
     for i in DrivenVar:
-        drivenpy = pm.PyNode(i[0])
-        driverpy = pm.PyNode(DriverVar[0])
         
+        
+       
+        drivenpy = pm.PyNode(str(i))
+        driverpy = pm.PyNode(DriverVar[0])
+    
         driverpy.rotate>>drivenpy.rotate
         
         
 def create_translate_connection():
     
     for i in DrivenVar:
-        drivenpy = pm.PyNode(i[0])
+        drivenpy = pm.PyNode(i)
         driverpy = pm.PyNode(DriverVar[0])
         
         driverpy.translate>>drivenpy.translate
-        
+
         
 def create_scale_connection():
     
     for i in DrivenVar:
-        drivenpy = pm.PyNode(i[0])
+        drivenpy = pm.PyNode(i)
         driverpy = pm.PyNode(DriverVar[0])
         
         driverpy.scale>>drivenpy.scale        
@@ -157,13 +160,21 @@ def delete_connections():
     for i in DrivenVar:
         drivenpy = pm.PyNode(i[0])
         driverpy = pm.PyNode(DriverVar[0])
-        
-        driverpy.scale.disconnect(drivenpy.scale)
-        driverpy.rotate.disconnect(drivenpy.rotate)
-        driverpy.translate.disconnect(drivenpy.translate)
-
-        
-    
+        try:
+            driverpy.scale.disconnect(drivenpy.scale)
+        except:
+            pass
+            
+        try:
+            driverpy.rotate.disconnect(drivenpy.rotate)
+        except:
+            pass
+            
+            
+        try:
+            driverpy.translate.disconnect(drivenpy.translate)
+        except:
+            pass
     
  
     
@@ -175,4 +186,4 @@ def author():
     cmds.launch(web='https://www.instagram.com/rig_n_code/') 
   
   
-quick_connection() 
+quick_connection()
