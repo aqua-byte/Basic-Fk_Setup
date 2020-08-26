@@ -2,6 +2,22 @@
 
 import maya.cmds as cmds
 
+import maya.mel as mel
+def sknTransferUI():
+            
+    if cmds.window('SkinTransfer', exists=True ):
+        cmds.deleteUI( 'SkinTransfer', window=True )
+    if cmds.windowPref('SkinTransfer', exists=True ):
+        cmds.windowPref( 'SkinTransfer', r=True )
+    
+    cmds.window('SkinTransfer', title='Skin Transfer', iconName='Short Name', widthHeight=(336,150),s=0 )
+    cmds.columnLayout()
+    
+
+    
+    cmds.button(l='Locator',w=150,bgc =[(.394),(.394),(.394)],c='loca()')
+    cmds.button(l='Jnt',w=150,bgc =[(.394),(.394),(.394)],c='joints()')
+    cmds.showWindow('SkinTransfer')
 
 def locators():
     hindToe=cmds.spaceLocator(n='l_hindToe_LOC')
@@ -1758,4 +1774,4 @@ for e in spineJointChain:
 cmds.parent(nonShape, nonShape2, spineStretchGrp)
 cmds.parent(spineStretchGrp, spineGrp)
 cmds.select(d=True) 
-
+sknTransferUI()
