@@ -2,57 +2,37 @@
 
 import maya.cmds as cmds
 
-''' place locators to define rig shape '''
-def bluecon(s):
-    cmds.setAttr(s+'.overrideEnabled',1)
-    cmds.setAttr(s+'.overrideColor',15)
-def yellowcon(s):
-    cmds.setAttr(s+'.overrideEnabled',1)
-    cmds.setAttr(s+'.overrideColor',17)
-def redcon(s):
-    cmds.setAttr(s+'.overrideEnabled',1)
-    cmds.setAttr(s+'.overrideColor',13)
-def lockTranslate(s):
-    cmds.setAttr(s+'.tx',k=False,l=True)
-    cmds.setAttr(s+'.ty',k=False,l=True)
-    cmds.setAttr(s+'.tz',k=False,l=True)
-def lockScale(s):
-    cmds.setAttr(s+'.sx',k=False,l=True)
-    cmds.setAttr(s+'.sy',k=False,l=True)
-    cmds.setAttr(s+'.sz',k=False,l=True)
-def lockRotate(s):
-    cmds.setAttr(s+'.rx',k=False,l=True)
-    cmds.setAttr(s+'.ry',k=False,l=True)
-    cmds.setAttr(s+'.rz',k=False,l=True)
+
 
 hindToe=cmds.spaceLocator(n='l_hindToe_LOC')
 cmds.setAttr(hindToe[0]+'.translateX',12)
 cmds.setAttr(hindToe[0]+'.translateZ',-20)
-bluecon(hindToe[0])
+
 hindAnkle=cmds.spaceLocator(n='l_hindAnkle_LOC')
 cmds.setAttr(hindAnkle[0]+'.translateX',12)
 cmds.setAttr(hindAnkle[0]+'.translateY',5)
 cmds.setAttr(hindAnkle[0]+'.translateZ',-23)
-bluecon(hindAnkle[0])
+
 hindKnee=cmds.spaceLocator(n='l_hindKnee_LOC')
 cmds.setAttr(hindKnee[0]+'.translateX',12)
 cmds.setAttr(hindKnee[0]+'.translateY',25)
 cmds.setAttr(hindKnee[0]+'.translateZ',-28)
-bluecon(hindKnee[0])
+
 hindUpperKnee=cmds.spaceLocator(n='l_hindUpperKnee_LOC')
 cmds.setAttr(hindUpperKnee[0]+'.translateX',12)
 cmds.setAttr(hindUpperKnee[0]+'.translateY',36)
 cmds.setAttr(hindUpperKnee[0]+'.translateZ',-19)
-bluecon(hindUpperKnee[0])
+
+
 hindFemur=cmds.spaceLocator(n='l_hindFemur_LOC')
 cmds.setAttr(hindFemur[0]+'.translateX',12)
 cmds.setAttr(hindFemur[0]+'.translateY',50)
 cmds.setAttr(hindFemur[0]+'.translateZ',-25)
-bluecon(hindFemur[0])
+
 hindPelvis=cmds.spaceLocator(n='l_hindPelvis_LOC')
 cmds.setAttr(hindPelvis[0]+'.translateY',54)
 cmds.setAttr(hindPelvis[0]+'.translateZ',-24)
-yellowcon(hindPelvis[0])
+
 
 hindLocGrp=cmds.group(hindToe,hindAnkle,hindKnee,hindUpperKnee,hindFemur,hindPelvis,n='hindPlacement_GRP')
 
@@ -60,51 +40,51 @@ hindLocGrp=cmds.group(hindToe,hindAnkle,hindKnee,hindUpperKnee,hindFemur,hindPel
 frontToe=cmds.spaceLocator(n='l_frontToe_LOC')
 cmds.setAttr(frontToe[0]+'.translateX',12)
 cmds.setAttr(frontToe[0]+'.translateZ',24)
-bluecon(frontToe[0])
+
 frontAnkle=cmds.spaceLocator(n='l_frontAnkle_LOC')
 cmds.setAttr(frontAnkle[0]+'.translateX',12)
 cmds.setAttr(frontAnkle[0]+'.translateY',5)
 cmds.setAttr(frontAnkle[0]+'.translateZ',21)
-bluecon(frontAnkle[0])
+
 frontKnee=cmds.spaceLocator(n='l_frontKnee_LOC')
 cmds.setAttr(frontKnee[0]+'.translateX',12)
 cmds.setAttr(frontKnee[0]+'.translateY',25)
 cmds.setAttr(frontKnee[0]+'.translateZ',24)
-bluecon(frontKnee[0])
+
 frontUpperKnee=cmds.spaceLocator(n='l_frontUpperKnee_LOC')
 cmds.setAttr(frontUpperKnee[0]+'.translateX',12)
 cmds.setAttr(frontUpperKnee[0]+'.translateY',36)
 cmds.setAttr(frontUpperKnee[0]+'.translateZ',18)
-bluecon(frontUpperKnee[0])
+
 frontFemur=cmds.spaceLocator(n='l_frontFemur_LOC')
 cmds.setAttr(frontFemur[0]+'.translateX',12)
 cmds.setAttr(frontFemur[0]+'.translateY',44)
 cmds.setAttr(frontFemur[0]+'.translateZ',25)
-bluecon(frontFemur[0])
+
 frontPelvis=cmds.spaceLocator(n='l_frontPelvis_LOC')
 cmds.setAttr(frontPelvis[0]+'.translateY',54)
 cmds.setAttr(frontPelvis[0]+'.translateZ',20)
-yellowcon(frontPelvis[0])
+
 frontLocGrp=cmds.group(frontToe,frontAnkle,frontKnee,frontUpperKnee,frontFemur,frontPelvis,n='frontPlacement_GRP')
 ''' neck loc placement '''
 neckRoot=cmds.spaceLocator(n='neckRoot_LOC')
 cmds.setAttr(neckRoot[0]+'.translateY',48)
 cmds.setAttr(neckRoot[0]+'.translateZ',30)
-yellowcon(neckRoot[0])
+
 neckEnd=cmds.spaceLocator(n='neckEnd_LOC')
 cmds.setAttr(neckEnd[0]+'.translateY',58)
 cmds.setAttr(neckEnd[0]+'.translateZ',50)
-yellowcon(neckEnd[0])
+
 neckLocGrp=cmds.group(neckRoot,neckEnd,n='neckPlacement_GRP')
 ''' tail '''
 tail1=cmds.spaceLocator(n='tailRoot_LOC')
 cmds.setAttr(tail1[0]+'.translateY',54)
 cmds.setAttr(tail1[0]+'.translateZ',-32)
-yellowcon(tail1[0])
+
 tail2=cmds.spaceLocator(n='tailEnd_LOC')
 cmds.setAttr(tail2[0]+'.translateY',54)
 cmds.setAttr(tail2[0]+'.translateZ',-62)
-yellowcon(tail2[0])
+
 tailLocGrp=cmds.group(tail1,tail2,n='tailPlacement_GRP')
 ''' finalize placement loc module '''
 mainLocGrp=cmds.group(tailLocGrp,neckLocGrp,frontLocGrp,hindLocGrp,n='mainPlacementLoc_GRP')
@@ -139,9 +119,7 @@ cmds.parent(worldrightshape,world,s=True,r=True)
 cmds.parent(backwardshape,world,s=True,r=True)
 cmds.delete(forward,backward,worldleft,worldright)
 cmds.parent(subworld,world)
-yellowcon(world)
-bluecon(worldleftshape)
-redcon(worldrightshape)
+
 
 ''' create legs module '''
 ''' create legs module '''
