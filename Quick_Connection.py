@@ -50,17 +50,7 @@ def quick_connection():
     (connectScale,'left',12),
     (deleteButton,'left',12),
     (author,'left',151)
-    
-            
-            
-            
-            	
-    
-    
-    
-    
-    
-    
+           
     ],
     attachControl=[
     
@@ -71,13 +61,6 @@ def quick_connection():
     (connectScale,'top',7, connectTranslate),
     (connectRotate,'top',14,driverButton),
     (deleteButton,'top',7,connectScale) 
-     
-    
-    
-    
-    
-        	
-        	
     
     ]
     
