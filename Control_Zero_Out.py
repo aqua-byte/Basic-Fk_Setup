@@ -4,8 +4,11 @@
 
 #Run the script and click on the interface, it will zero out all the controls with suffix *Ctrl.
 #(You can change the suffix to *Ctrl,*ctrl,*control according to your choice on line 14)
-OR
+#OR
 #Select all the controllers ignoring the suffix and run the script ,it will zero out all the selected controls
+
+import pymel.core as pm
+import maya.cmds as cmds 
 
 
 selected_object = pm.selected()
