@@ -1,0 +1,100 @@
+from pymel.core import *
+
+if window("Renamer", exists = True):
+    deleteUI("Renamer")
+
+def searchAndReplace():
+    selection = ls(sl=True)
+
+    searchFor = textFieldGrp(searchTextField, query=True, text=True)
+    replaceWith = textFieldGrp(replaceTextField, query=True, text=True)
+    
+    for obj in selection:
+        
+        oldName = obj.name()
+        if searchFor in oldName:
+            newName = oldName.replace(searchFor, replaceWith)
+            rename(obj, newName)
+
+def applyPrefix():
+    selection = ls(sl=True)
+    
+    prefixName = textFieldGrp(prefixTextField, query=True, text=True)
+    
+    for obj in selection:
+        
+        oldName = obj.name()
+        newName = prefixName + oldName
+        rename(obj, newName)
+
+
+def applySuffix():
+    selection = ls(sl=True)
+    
+    suffixName = textFieldGrp(suffixTextField, query=True, text=True)
+    
+    for obj in selection:
+        
+        oldName = obj.name()
+        newName = oldName + suffixName
+        rename(obj, newName)
+
+def newName():
+    selection = ls(sl=True)
+    
+    startsWith = int(textFieldGrp(startsWithTextField, query= True, text=True))
+    newNameQuery = textFieldGrp(renameTextField, query=True, text = True)
+
+    for i, obj in enumerate(selection):
+        rename(obj, newNameQuery + '_{:0>2}'.format(i + startsWith) )
+
+def expand_command(mainWindow, newheight):
+    
+    window_height = window(mainWindow, query=True, height=True)
+    window(mainWindow, edit=True, height = window_height + newheight)
+
+def collapse_command(mainWindow, newheight):
+    
+    window_height = window(mainWindow, query=True, height=True)
+    window(mainWindow, edit=True, height = window_height - newheight)
+
+############         UI
+
+mainWindow = window("Renamer", title="Rename", sizeable=False, width = 390, height = 350)
+mainLayout = columnLayout(parent = mainWindow, width = 390, height= 350)
+
+### search and replace layout
+SandR_layout = frameLayout(label="search and replace", collapsable=True, parent = mainLayout,
+                            collapseCommand = Callback(collapse_command, mainWindow, 80),
+                            expandCommand = Callback(expand_command, mainWindow, 80))
+
+searchTextField = textFieldGrp(label = "Search :", text= "")
+replaceTextField = textFieldGrp(label = "Replace :", text= "")
+
+searchAndReplaceButton = button(label="Search and Replace", command = Callback(searchAndReplace))
+
+### prefix layout
+prefixSuffixLayout = frameLayout(label="Prefix and Suffix", collapsable=True, parent = mainLayout,
+                            collapseCommand = Callback(collapse_command, mainWindow, 115),
+                            expandCommand = Callback(expand_command, mainWindow, 115))
+
+prefixTextField = textFieldGrp(label = "Prefix :", text= "")
+prefixButton = button(label="Set Prefix", command = Callback(applyPrefix))
+
+suffixTextField = textFieldGrp(label = "suffix :", text= "")
+suffixButton = button(label="Set Suffix", command = Callback(applySuffix))
+
+### Rename layout
+prefixSuffixLayout = frameLayout(label="Rename", collapsable=True, parent = mainLayout,
+                            collapseCommand = Callback(collapse_command, mainWindow, 80),
+                            expandCommand = Callback(expand_command, mainWindow, 80))
+
+renameTextField = textFieldGrp(label = "New Name :", text= "" )
+startsWithTextField = textFieldGrp(label = "Start with:", text = "1" )
+renameButton = button(label = "Rename", command = Callback(newName))
+
+
+mainWindow.show()
+
+
+
